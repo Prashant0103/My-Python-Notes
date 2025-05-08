@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Python Notes</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      background: #f4f4f4;
+      flex-direction: column;
+    }
+
+    header {
+      background-color: #2c3e50;
+      color: white;
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .menu-toggle {
+      display: none;
+      font-size: 24px;
+      background: none;
+      border: none;
+      color: white;
+      cursor: pointer;
+    }
+
+    nav {
+      width: 250px;
+      background: #2c3e50;
+      color: white;
+      height: 100vh;
+      padding: 20px;
+      box-sizing: border-box;
+      position: fixed;
+      overflow-y: auto;
+      top: 0;
+      left: 0;
+      transition: transform 0.3s ease;
+    }
+
+    nav h2 {
+      margin-top: 0;
+      color: #d1d9e2;
+    }
+
+    nav a {
+      color: #ecf0f1;
+      text-decoration: none;
+      display: block;
+      margin: 10px 0;
+    }
+
+    main {
+      margin-left: 250px;
+      padding: 40px;
+      overflow-y: auto;
+      flex: 1;
+    }
+
+    h1, h2, h3 {
+      color: #2c3e50;
+    }
+
+    pre {
+      background: #ecf0f1;
+      padding: 15px;
+      border-radius: 5px;
+      overflow-x: auto;
+    }
+
+    code {
+      font-family: 'Courier New', monospace;
+    }
+
+    /* Mobile styles */
+    @media (max-width: 768px) {
+      .menu-toggle {
+        display: block;
+      }
+
+      nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 250px;
+        transform: translateX(-100%);
+        z-index: 1000;
+      }
+
+      nav.active {
+        transform: translateX(0);
+      }
+
+      main {
+        margin-left: 0;
+        padding: 20px;
+      }
+
+      header {
+        position: sticky;
+        top: 0;
+        z-index: 999;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1 style="font-size: 20px;">Python Notes</h1>
+    <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+  </header>
+
+  <nav id="sidebar">
+    <h2>Python Topics</h2>
+    <a href="#intro">Introduction</a>
+    <a href="#syntax">Syntax</a>
+    <a href="#comments">Comments</a>
+    <a href="#variables">Variables</a>
+    <a href="#datatypes">Data Types</a>
+    <a href="#numbers">Numbers</a>
+    <a href="#casting">Casting</a>
+    <a href="#booleans">Booleans</a>
+    <a href="#operators">Operators</a>
+    <a href="#lists">Lists</a>
+    <a href="#tuples">Tuples</a>
+    <a href="#sets">Sets</a>
+    <a href="#dictionaries">Dictionaries</a>
+    <a href="#conditions">Conditions</a>
+    <a href="#loops">Loops</a>
+    <a href="#functions">Functions</a>
+    <a href="#lambda">Lambda</a>
+    <a href="#arrays">Arrays</a>
+    <a href="#classes">Classes/Objects</a>
+    <a href="#inheritance">Inheritance</a>
+    <a href="#polymorphism">Polymorphism</a>
+    <a href="#iterators">Iterators</a>
+    <a href="#scope">Scope</a>
+    <a href="#modules">Modules</a>
+    <a href="#pip">PIP</a>
+    <a href="#dates">Dates</a>
+    <a href="#math">Math</a>
+    <a href="#json">JSON</a>
+    <a href="#regex">RegEx</a>
+    <a href="#filehandling">File Handling</a>
+    <a href="#exceptions">Exception Handling</a>
+    <a href="#mysql">MySQL</a>
+    <a href="#numpy">NumPy</a>
+    <a href="#pandas">Pandas</a>
+    <a href="#flask">Flask</a>
+    <a href="#flask_Mini_Project">Flask Mini Project on Below Topics</a>
+  </nav>
+  
+  <main>
+    <section id="intro">
+      <h1>Introduction to Python</h1>
+      <p>
+        Python is an open-source, high-level programming language that is known for its ease of learning and use. 
+        It is one of the most popular languages in the world, widely adopted in various fields such as web development, data science, machine learning, artificial intelligence (AI), automation, and more.
+        Its syntax is simple and clear, allowing developers to focus on solving problems rather than getting caught up in complex syntax rules.
+      </p>
+      <ul>
+        <li><strong>Cross-platform:</strong> Python is available on all major platforms, including Windows, macOS, and Linux. This means you can write Python code on one platform and run it on others without modification, making it ideal for cross-platform development.</li>
+        <li><strong>Supports multiple programming paradigms:</strong> Python is a multi-paradigm language, meaning it supports object-oriented, procedural, and functional programming. This flexibility allows developers to choose the best approach for the problem they are solving.</li>
+        <li><strong>Ideal for web development, data analysis, AI, and more:</strong> Python is highly versatile. It powers popular web development frameworks like Django and Flask, data analysis libraries like Pandas and NumPy, and machine learning libraries such as TensorFlow and Scikit-learn. This makes Python an excellent choice for building a wide variety of applications—from websites and data-driven solutions to intelligent systems.</li>
+      </ul>
+    </section>
+    
+
+    <section id="syntax">
+      <h2>Python Syntax</h2>
+      <p>
+        Python uses indentation to define the structure of the code, making it cleaner and more readable compared to other programming languages that rely on braces or other symbols to define code blocks. 
+        This approach enforces good coding practices, as the indentation level directly represents the block of code. 
+        Python’s syntax is designed to be simple and intuitive, making it an excellent language for beginners as well as experienced developers.
+      </p>
+      <p>
+        Python statements do not require semicolons to mark the end of a line, and code blocks (such as the body of a function or a loop) are defined by consistent indentation. 
+        Proper indentation is crucial in Python; otherwise, the interpreter will raise an indentation error.
+      </p>
+      <pre><code>print("Hello, World!")</code></pre>
+    </section>
+    
+    <section id="comments">
+      <h2>Comments</h2>
+      <p>
+        Comments in Python are lines of text in the code that are not executed by the interpreter. They are used to explain the code, making it more understandable for others (or even for yourself when you revisit the code later).
+        Comments can describe the logic behind the code, why certain decisions were made, or even leave TODO notes for future work.
+      </p>
+      <p>
+        In Python, comments are created by placing a <code>#</code> symbol in front of the text. Anything following the <code>#</code> on the same line is considered a comment and will be ignored by the Python interpreter.
+      </p>
+      <pre><code># This is a comment</code></pre>
+    </section>
+    
+    <section id="variables">
+      <h2>Variables</h2>
+      <p>
+        Variables in Python are used to store data that can be referenced and manipulated in your program. Unlike many other programming languages, Python is dynamically typed, meaning you don’t need to explicitly declare the type of a variable. 
+        Python automatically determines the type based on the value assigned to the variable.
+      </p>
+      <p>
+        A variable can hold various types of data, such as integers, strings, lists, and more. Once a variable is created, you can reassign it to store a different value. This dynamic nature of Python makes it very flexible.
+      </p>
+      <pre><code>x = 5
+    y = "Hello"
+    print(x)
+    print(y)</code></pre>
+    </section>
+    
+
+    <section id="datatypes">
+      <h2>Data Types</h2>
+      <p>Python has various built-in data types:</p>
+      <ul>
+        <li><strong>Numeric:</strong> Used to store numeric values.
+          <ul>
+            <li><code>int</code>: Integer numbers (e.g., <code>x = 10</code>)</li>
+            <li><code>float</code>: Floating-point numbers (e.g., <code>y = 10.5</code>)</li>
+            <li><code>complex</code>: Complex numbers (e.g., <code>z = 3 + 5j</code>)</li>
+          </ul>
+        </li>
+        <li><strong>Text:</strong> Used to store text data.
+          <ul>
+            <li><code>str</code>: String of characters (e.g., <code>name = "Alice"</code>)</li>
+          </ul>
+        </li>
+        <li><strong>Sequence:</strong> Used to store multiple items in a single variable.
+          <ul>
+            <li><code>list</code>: Ordered, mutable collection (e.g., <code>fruits = ["apple", "banana"]</code>)</li>
+            <li><code>tuple</code>: Ordered, immutable collection (e.g., <code>colors = ("red", "green")</code>)</li>
+            <li><code>range</code>: Sequence of numbers (e.g., <code>numbers = range(5)</code>)</li>
+          </ul>
+        </li>
+        <li><strong>Dictionary:</strong> Stores key-value pairs.
+          <ul>
+            <li><code>dict</code>: Dictionary (e.g., <code>person = {"name": "Alice", "age": 25}</code>)</li>
+          </ul>
+        </li>
+        <li><strong>Set:</strong> Collection of unordered unique items.
+          <ul>
+            <li><code>set</code>: Mutable set (e.g., <code>items = {"apple", "banana"}</code>)</li>
+            <li><code>frozenset</code>: Immutable set (e.g., <code>fset = frozenset(["apple", "banana"])</code>)</li>
+          </ul>
+        </li>
+        <li><strong>Boolean:</strong> Represents truth values.
+          <ul>
+            <li><code>bool</code>: True or False (e.g., <code>is_active = True</code>)</li>
+          </ul>
+        </li>
+        <li><strong>Binary:</strong> Used to store binary data.
+          <ul>
+            <li><code>bytes</code>: Immutable binary data (e.g., <code>b = b"hello"</code>)</li>
+            <li><code>bytearray</code>: Mutable binary data (e.g., <code>ba = bytearray([65, 66])</code>)</li>
+          </ul>
+        </li>
+      </ul>
+    </section>
+    
+
+    <section id="operators">
+      <h2>Operators</h2>
+      <p>Python supports various operators:</p>
+      <ul>
+        <li><strong>Arithmetic Operators:</strong> Perform mathematical operations.
+          <ul>
+            <li><code>+</code>: Addition (<code>3 + 2 = 5</code>)</li>
+            <li><code>-</code>: Subtraction (<code>5 - 2 = 3</code>)</li>
+            <li><code>*</code>: Multiplication (<code>4 * 2 = 8</code>)</li>
+            <li><code>/</code>: Division (<code>10 / 2 = 5.0</code>)</li>
+            <li><code>%</code>: Modulus (remainder) (<code>10 % 3 = 1</code>)</li>
+            <li><code>**</code>: Exponentiation (<code>2 ** 3 = 8</code>)</li>
+            <li><code>//</code>: Floor division (<code>10 // 3 = 3</code>)</li>
+          </ul>
+        </li>
+        <li><strong>Assignment Operators:</strong> Assign and update values.
+          <ul>
+            <li><code>=</code>: Assign value (<code>x = 5</code>)</li>
+            <li><code>+=</code>: Add and assign (<code>x += 3</code> is <code>x = x + 3</code>)</li>
+            <li><code>-=</code>: Subtract and assign (<code>x -= 2</code>)</li>
+            <li><code>*=</code>: Multiply and assign (<code>x *= 4</code>)</li>
+            <li><code>/=</code>: Divide and assign (<code>x /= 2</code>)</li>
+            <li><code>%=</code>: Modulus and assign (<code>x %= 3</code>)</li>
+            <li><code>**=</code>: Exponent and assign (<code>x **= 2</code>)</li>
+            <li><code>//=</code>: Floor divide and assign (<code>x //= 2</code>)</li>
+          </ul>
+        </li>
+        <li><strong>Comparison Operators:</strong> Compare values.
+          <ul>
+            <li><code>==</code>: Equal to (<code>5 == 5 → True</code>)</li>
+            <li><code>!=</code>: Not equal to (<code>5 != 3 → True</code>)</li>
+            <li><code>&gt;</code>: Greater than (<code>5 &gt; 3 → True</code>)</li>
+            <li><code>&lt;</code>: Less than (<code>3 &lt; 5 → True</code>)</li>
+            <li><code>&gt;=</code>: Greater than or equal to (<code>5 &gt;= 5 → True</code>)</li>
+            <li><code>&lt;=</code>: Less than or equal to (<code>3 &lt;= 5 → True</code>)</li>
+          </ul>
+        </li>
+        <li><strong>Logical Operators:</strong> Combine boolean expressions.
+          <ul>
+            <li><code>and</code>: True if both are true (<code>True and False → False</code>)</li>
+            <li><code>or</code>: True if at least one is true (<code>True or False → True</code>)</li>
+            <li><code>not</code>: Inverts the result (<code>not True → False</code>)</li>
+          </ul>
+        </li>
+        <li><strong>Identity Operators:</strong> Compare memory locations.
+          <ul>
+            <li><code>is</code>: True if same object (<code>x is y</code>)</li>
+            <li><code>is not</code>: True if not same object (<code>x is not y</code>)</li>
+          </ul>
+        </li>
+        <li><strong>Membership Operators:</strong> Test membership in a sequence.
+          <ul>
+            <li><code>in</code>: True if value exists (<code>"a" in "apple" → True</code>)</li>
+            <li><code>not in</code>: True if value doesn't exist (<code>"x" not in "apple" → True</code>)</li>
+          </ul>
+        </li>
+        <li><strong>Bitwise Operators:</strong> Operate on binary representations.
+          <ul>
+            <li><code>&</code>: AND (<code>5 & 3 = 1</code>)</li>
+            <li><code>|</code>: OR (<code>5 | 3 = 7</code>)</li>
+            <li><code>^</code>: XOR (<code>5 ^ 3 = 6</code>)</li>
+            <li><code>~</code>: NOT (<code>~5 = -6</code>)</li>
+            <li><code>&lt;&lt;</code>: Left shift (<code>5 &lt;&lt; 1 = 10</code>)</li>
+            <li><code>&gt;&gt;</code>: Right shift (<code>5 &gt;&gt; 1 = 2</code>)</li>
+          </ul>
+        </li>
+      </ul>
+    </section>
+    
+
+    <section id="lists">
+      <h2>Lists</h2>
+      <p>
+        A <strong>List</strong> in Python is an ordered collection of items that is mutable,
+        meaning you can change, add, or remove elements after the list has been created.
+        Lists can hold items of any data type, including a mix of types.
+      </p>
+      <pre><code># Creating a list of fruits
+    fruits = ["apple", "banana", "cherry"]
+    
+    # Accessing the first item in the list using index 0
+    print(fruits[0])  # Output: apple</code></pre>
+    </section>
+    
+
+    <section id="tuples">
+      <h2>Tuples</h2>
+      <p>
+        A <strong>Tuple</strong> in Python is an ordered collection of items that is <strong>immutable</strong>,
+        meaning its elements cannot be changed, added, or removed after creation. Tuples are commonly used
+        for fixed data and are often faster than lists for iteration.
+      </p>
+      <pre><code># Creating a tuple of fruits
+    fruits = ("apple", "banana", "cherry")
+    
+    # Accessing the first item in the tuple using index 0
+    print(fruits[0])  # Output: apple</code></pre>
+    </section>
+
+    <section id="sets">
+      <h2>Sets</h2>
+      <p>
+        A <strong>Set</strong> in Python is an <strong>unordered</strong> collection of <strong>unique</strong> items.
+        Sets do not allow duplicate values and are commonly used for membership testing, removing duplicates, and performing set operations like union and intersection.
+      </p>
+      <pre><code># Creating a set of fruits
+    fruits = {"apple", "banana", "cherry"}
+    
+    # Printing the set (order may vary, and duplicates are automatically removed)
+    print(fruits)  # Output: {'banana', 'apple', 'cherry'} (order is not guaranteed)</code></pre>
+    </section>
+    
+
+    <section id="conditions">
+      <h2>Conditions</h2>
+      <p>
+        Python supports conditional statements that allow you to execute code blocks based on specific conditions.
+        These include <code>if</code>, <code>elif</code> (else if), and <code>else</code> clauses to handle multiple scenarios.
+      </p>
+      <pre><code># Defining a variable
+    x = 10
+    
+    # Checking if x is greater than 5
+    if x > 5:
+        print("x is greater than 5")
+    
+    # Checking if x is equal to 5 (only checked if the previous condition is False)
+    elif x == 5:
+        print("x is 5")
+    
+    # If none of the above conditions are true
+    else:
+        print("x is less than 5")</code></pre>
+    </section>
+    
+
+    <section id="loops">
+      <h2>Loops</h2>
+      <p>
+        Python supports two main types of loops: <strong>for</strong> loops and <strong>while</strong> loops.
+        Loops are used to execute a block of code repeatedly, either for a fixed number of times or while a condition is true.
+      </p>
+      <pre><code># For loop: iterates over a sequence (like a range or list)
+    for i in range(5):
+        print(i)  # Output: 0 1 2 3 4
+    
+    # While loop: runs as long as the condition is true
+    i = 0
+    while i < 5:
+        print(i)  # Output: 0 1 2 3 4
+        i += 1  # Increment i to avoid infinite loop</code></pre>
+    </section>
+    
+
+    <section id="functions">
+      <h2>Functions</h2>
+      <p>
+        A <strong>Function</strong> in Python is a reusable block of code that performs a specific task.
+        Functions help organize code into manageable sections and are defined using the <code>def</code> keyword, followed by the function name and parameters.
+      </p>
+      <pre><code># Defining a function named 'greet' that takes one parameter 'name'
+    def greet(name):
+        print("Hello, " + name)
+    
+    # Calling the function and passing the argument "Alice"
+    greet("Alice")  # Output: Hello, Alice</code></pre>
+    </section>
+    
+
+    <section id="lambda">
+      <h2>Lambda</h2>
+      <p>
+        A <strong>lambda function</strong> is a short, one-line function with no name. 
+        It's used when you need a simple function for a short time.
+        You can use it instead of writing a full <code>def</code> function.
+      </p>
+      <pre><code># Creating a lambda function that adds two numbers
+    add = lambda a, b: a + b
+    
+    # Calling the lambda function
+    print(add(5, 3))  # Output: 8</code></pre>
+    </section>
+    
+    <section id="arrays">
+      <h2>Arrays</h2>
+      <p>
+        An <strong>array</strong> is a special type of list used to store only one type of data (usually numbers). 
+        It is more memory-efficient than regular lists and is useful when you work with large amounts of numerical data.
+        You need to import the <code>array</code> module to use arrays in Python.
+      </p>
+      <pre><code># Importing the array module
+    import array
+    
+    # Creating an integer array ('i' stands for integer)
+    arr = array.array('i', [1, 2, 3, 4, 5])
+    
+    # Printing the array
+    print(arr)  # Output: array('i', [1, 2, 3, 4, 5])</code></pre>
+    </section>
+    
+
+    <section id="classes">
+      <h2>Classes/Objects</h2>
+      <p>
+        Python supports <strong>object-oriented programming (OOP)</strong>, which allows you to create classes and objects.
+        A <strong>class</strong> is a blueprint for creating objects, and an <strong>object</strong> is an instance of a class.
+        Classes can have attributes (variables) and methods (functions).
+      </p>
+      <pre><code># Defining a class named 'Person'
+    class Person:
+        # Constructor method to initialize the object with a name
+        def __init__(self, name):
+            self.name = name
+    
+        # Method to print a greeting message
+        def greet(self):
+            print("Hi, I'm " + self.name)
+    
+    # Creating an object of the Person class
+    p = Person("Bob")
+    
+    # Calling the greet method of the object
+    p.greet()  # Output: Hi, I'm Bob</code></pre>
+    </section>
+    
+
+    <section id="inheritance">
+      <h2>Inheritance</h2>
+      <p>
+        <strong>Inheritance</strong> allows a class to inherit attributes and methods from another class.
+        This helps create a new class based on an existing class, enabling code reuse and creating a hierarchical relationship between classes.
+      </p>
+      <pre><code># Defining a base class 'Person'
+    class Person:
+        def __init__(self, name):
+            self.name = name
+    
+        def greet(self):
+            print("Hi, I'm " + self.name)
+    
+    # Defining a subclass 'Student' that inherits from 'Person'
+    class Student(Person):
+        def __init__(self, name, student_id):
+            # Calling the constructor of the parent class (Person)
+            super().__init__(name)
+            # Adding a new attribute for student ID
+            self.student_id = student_id
+    
+    # Creating an object of the 'Student' class
+    s = Student("Alice", "S12345")
+    
+    # Calling the greet method inherited from 'Person'
+    s.greet()  # Output: Hi, I'm Alice
+    print(s.student_id)  # Output: S12345</code></pre>
+    </section>
+    
+
+    <section id="polymorphism">
+      <h2>Polymorphism</h2>
+      <p>
+        <strong>Polymorphism</strong> allows different classes to define the same method, but with different behavior.
+        This enables objects of different classes to be treated as objects of a common superclass and allows methods to behave differently depending on the object type.
+      </p>
+      <pre><code># Defining a class 'Dog' with a 'sound' method
+    class Dog:
+        def sound(self):
+            return "Woof"
+    
+    # Defining a class 'Cat' with a 'sound' method
+    class Cat:
+        def sound(self):
+            return "Meow"
+    
+    # Creating a list of animals (Dog and Cat objects)
+    animals = [Dog(), Cat()]
+    
+    # Iterating through the animals list and calling the sound method for each
+    for animal in animals:
+        print(animal.sound())  # Output: Woof  Meow</code></pre>
+    </section>
+    
+
+    <section id="iterators">
+      <h2>Iterators</h2>
+      <p>
+        An <strong>iterator</strong> is an object that allows you to iterate over a sequence (like a list or tuple) one item at a time. 
+        Iterators implement two key methods: <code>__iter__()</code> to return the iterator object and <code>__next__()</code> to return the next item in the sequence.
+      </p>
+      <pre><code># Creating a tuple
+    mytuple = ("apple", "banana", "cherry")
+    
+    # Creating an iterator from the tuple
+    myit = iter(mytuple)
+    
+    # Accessing items using the 'next' function
+    print(next(myit))  # Output: apple
+    print(next(myit))  # Output: banana</code></pre>
+    </section>
+    
+
+    <section id="modules">
+      <h2>Modules</h2>
+      <p>
+        <strong>Modules</strong> in Python allow you to organize your code across multiple files. 
+        A module is simply a file containing Python definitions and statements. You can import and use code from one module in another to keep your code clean and manageable.
+      </p>
+      <pre><code># mymodule.py
+    # Defining a function in a module
+    def greet():
+      print("Hi")
+    
+    # main.py
+    # Importing the 'mymodule' file to use its functions
+    import mymodule
+    
+    # Calling the 'greet' function from the 'mymodule'
+    mymodule.greet()  # Output: Hi</code></pre>
+    </section>
+    
+
+    <section id="pip">
+      <h2>PIP</h2>
+      <p>
+        <strong>PIP</strong> is the Python package installer. It allows you to easily install and manage external libraries and packages in your Python environment.
+        With PIP, you can install, upgrade, or uninstall libraries and manage dependencies in your projects.
+      </p>
+      <pre><code># Installing the 'numpy' package using PIP
+    pip install numpy</code></pre>
+    </section>
+    
+
+    <section id="dates">
+      <h2>DateTime</h2>
+      <p>
+        The <strong>datetime</strong> module in Python allows you to work with dates and times. It provides classes for manipulating dates and times in both simple and complex ways.
+        You can use it to get the current date and time, perform date arithmetic, and format dates and times.
+      </p>
+      <pre><code># Importing the datetime module
+    import datetime
+    
+    # Getting the current date and time
+    now = datetime.datetime.now()
+    
+    # Printing the current date and time
+    print(now)  # Output: 2025-05-08 10:00:00.123456</code></pre>
+    </section>
+    
+
+    <section id="math">
+      <h2>Math Module</h2>
+      <p>
+        The <strong>math</strong> module in Python provides a wide range of mathematical functions, such as basic arithmetic, trigonometry, logarithms, and more.
+        It allows you to perform mathematical operations with greater efficiency.
+      </p>
+      <pre><code># Importing the math module
+    import math
+    
+    # Calculating the square root of 16
+    print(math.sqrt(16))  # Output: 4.0
+    
+    # Calculating 2 raised to the power of 3
+    print(math.pow(2, 3))  # Output: 8.0</code></pre>
+    </section>
+    
+
+    <section id="json">
+      <h2>JSON</h2>
+      <p>
+        <strong>JSON</strong> (JavaScript Object Notation) is a lightweight, text-based format used to store and exchange data. 
+        It is widely used for data interchange between servers and web applications.
+        In Python, the <code>json</code> module allows you to work with JSON data by converting it to and from Python objects.
+      </p>
+      <pre><code># Importing the json module
+    import json
+    
+    # A JSON string containing some data
+    data = '{"name": "John", "age": 30}'
+    
+    # Converting the JSON string to a Python dictionary
+    person = json.loads(data)
+    
+    # Accessing the 'name' value from the converted dictionary
+    print(person["name"])  # Output: John</code></pre>
+    </section>
+    
+
+    <section id="regex">
+      <h2>Regular Expressions (RegEx)</h2>
+      <p>
+        <strong>Regular Expressions (RegEx)</strong> are powerful tools for pattern matching in strings. 
+        They allow you to search, match, and manipulate text based on specific patterns.
+        In Python, the <code>re</code> module provides functions to work with regular expressions.
+      </p>
+      <pre><code># Importing the re module
+    import re
+    
+    # Searching for the pattern "world" in the string "Hello world"
+    pattern = re.search("world", "Hello world")
+    
+    # Printing the match object
+    print(pattern)  # Output: <re.Match object; span=(6, 11), match='world'></code></pre>
+    </section>
+    
+
+    <section id="filehandling">
+      <h2>File Handling</h2>
+      <p>
+        Python provides built-in functions for working with files. You can <strong>read</strong> from, <strong>write</strong> to, and <strong>append</strong> to files.
+        You can use the <code>open()</code> function to access a file, and then use methods like <code>read()</code> or <code>write()</code> to interact with its contents.
+      </p>
+      <pre><code># Reading from a file
+    f = open("file.txt", "r")  # Open the file in read mode
+    print(f.read())  # Read and print the content of the file
+    f.close()  # Close the file after operation is done</code></pre>
+    </section>
+    
+
+    <section id="exceptions">
+      <h2>Exception Handling</h2>
+      <p>
+        <strong>Exception Handling</strong> in Python is used to catch and handle errors in a controlled way, preventing crashes and enabling smoother program execution. 
+        The <code>try</code> block is used to test code that may cause an exception, the <code>except</code> block handles the exception, and the <code>finally</code> block executes code regardless of whether an error occurred.
+      </p>
+      <pre><code># Example of exception handling
+    try:
+      # Attempting to print an undefined variable
+      print(x)
+    except NameError:
+      # Handling the exception if 'x' is not defined
+      print("Variable is not defined")
+    finally:
+      # Code in the finally block will run regardless of an error
+      print("This runs regardless of error")</code></pre>
+    </section>
+    
+
+    <section id="mysql">
+      <h2>MySQL</h2>
+      <p>
+        Python allows interaction with MySQL databases using libraries like <strong>mysql-connector</strong>. 
+        This allows you to connect to MySQL, execute queries, and retrieve data from the database directly from your Python programs.
+      </p>
+      <pre><code># Importing the mysql.connector library
+    import mysql.connector
+    
+    # Establishing a connection to the MySQL database
+    connection = mysql.connector.connect(
+      host="localhost",         # Host where the MySQL server is running
+      user="yourusername",      # MySQL username
+      password="yourpassword",  # MySQL password
+      database="mydatabase"     # The database to connect to
+    )
+    
+    # The connection is established; now you can perform operations like queries
+    </code></pre>
+    </section>
+
+    <section id="numpy">
+      <h2>NumPy</h2>
+      <p>
+        <strong>NumPy</strong> is a powerful library in Python used for numerical operations. It provides support for arrays, matrices, and a large collection of high-level mathematical functions to operate on these data structures.
+        NumPy is widely used for scientific computing, data analysis, and machine learning.
+      </p>
+      <pre><code># Importing the numpy library with alias 'np'
+    import numpy as np
+    
+    # Creating a NumPy array from a Python list
+    arr = np.array([1, 2, 3, 4])
+    
+    # Printing the NumPy array
+    print(arr)  # Output: [1 2 3 4]</code></pre>
+    </section>
+    
+
+    <section id="pandas">
+      <h2>Pandas</h2>
+      <p>
+        <strong>Pandas</strong> is a powerful data analysis library in Python that provides easy-to-use data structures like <code>DataFrame</code> and <code>Series</code>. 
+        It is widely used for handling and analyzing large datasets, with built-in functions for reading, filtering, and processing data.
+      </p>
+      <pre><code># Importing the pandas library with alias 'pd'
+    import pandas as pd
+    
+    # Creating a dictionary with sample data
+    data = {'Name': ['Tom', 'Jerry'], 'Age': [20, 21]}
+    
+    # Converting the dictionary into a DataFrame
+    df = pd.DataFrame(data)
+    
+    # Printing the DataFrame
+    print(df)
+    
+    # Output:
+    #     Name  Age
+    # 0    Tom   20
+    # 1  Jerry   21</code></pre>
+    </section>
+    
+    <section id="flask">
+      <h2>Flask</h2>
+      <p>
+        <strong>Flask</strong> is a lightweight Python web framework used to build web applications. 
+        It is known for its simplicity and flexibility, allowing developers to add only the components they need, making it a good choice for small to medium-sized applications.
+        Flask does not come with the built-in features of a full-stack framework like Django, but it gives you the freedom to choose how to structure your app.
+      </p>
+      <pre><code># Installing Flask using pip
+    pip install flask
+    
+    # Creating a simple Flask application
+    from flask import Flask
+    
+    app = Flask(__name__)
+    
+    @app.route('/')
+    def hello_world():
+        return 'Hello, World!'
+    
+    # Running the Flask application
+    if __name__ == '__main__':
+        app.run()
+    </code></pre>
+    </section>
+
+
+
+    <section id="flask_Mini_Project">
+      <h2>Flask Based Mini Project on Below Topics</h2>
+      <h3>Student Information System</h3>
+      <p>A Student Information System allows the management of student data such as personal details, grades, and courses. It provides an easy way to track and manage student records through a web interface.</p>
+    
+    
+      <h3>Quiz System</h3>
+      <p>A Quiz System lets users participate in quizzes, answer questions, and get scores based on their responses. It can be built using Flask to manage quizzes, track answers, and display the final score to the user.</p>
+    
+      <h3>Hospital Management System</h3>
+      <p>A Hospital Management System helps in managing patient records, doctors, and appointments. It provides an interface for both doctors and patients to manage appointments and medical records effectively.</p>
+    
+      <h3>Library Management System</h3>
+      <p>A Library Management System helps in tracking books, users, and borrowing records. It allows for managing a library’s catalog and keeping track of borrowed books and their due dates.</p>
+    </section>
+    
+    
+
+  </main>
+  <script>
+    function toggleMenu() {
+      document.getElementById('sidebar').classList.toggle('active');
+    }
+  </script>
+</body>
+</html>
